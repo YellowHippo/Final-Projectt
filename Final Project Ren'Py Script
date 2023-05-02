@@ -1,0 +1,320 @@
+## The script for my Ren'Py game
+
+
+
+define gui.dialogue_text_outlines = [ (2.5, "#9a34ce8f") ]
+define gui.name_text_outlines = [ (0, "#2f232ec2", 2, 2) ]
+define m = Character('Miku', color="#27cd90", what_outlines=[ (2.5, "#9a34ce8f") ])
+define l = Character("Luka", color="#f7b1ec", what_outlines=[ (2.5, "#9a34ce8f") ])
+define p = Character("[name]", color="#ffd477", what_outlines=[ (2.5, "#9a34ce8f") ])
+define q = Character("???", color="#73218f", what_outlines=[ (2.5, "#9a34ce8f") ])
+init:
+    $ heart_points = 0
+    define love = "audio/magicoflove.mp3"
+    define car = "audio/carhorn.mp3"
+    define world = "audio/theworld.mp3"
+    define twothree = "audio/23.mp3"
+
+label start:
+    $ heart_points = 0
+    "Hello!"
+    python:
+        name = renpy.input("What's your name?")
+
+        name = name.strip() or "Player"
+"[name]... I haven't heard that name before. I like it!"
+"Anyways, Welcome to Project X! A dating sim created by me, Madison."
+"I hope you enjoy my fun little project. But before we begin, I have a question for you."
+menu:
+    "Just wondering, do you like playing dating sims?"
+    "Of course I do!":
+
+            jump Yes
+
+    "No, not really":
+
+            jump No
+    "What is a dating sim?":
+
+            jump Explain
+label Yes:
+    "I see... you have taste"
+    jump Intro
+label No:
+    "I understand. I appreciate you giving this a chance though :)"
+    jump Intro
+label Explain:
+    "You seriously don't know?! \sigh\... I'll only explain this once, so listen up!"
+    "A dating sim, short for 'Dating Simulator', is a video game subgenre of simulation games. They have a heavy emphasis on romance and romantic themes"
+    "You, [name], have to befriend one of the three characters and eventually win them over. Pretty simple"
+    "Got it? Ok moving on..."
+label Intro:
+    "Ok enough messing around, let's get started!"
+    scene sky
+    with fade
+"Yesterday, you were transported to another world."
+"In an instant, your whole life had been left behind on earth. Not much was being missed though."
+"Just your dream job, a loving family, and your pet cat named Sylvester whom you love dearly...."
+"...They won't be missed at all."
+"You had wished to have more excitement in your life before. But so does everyone, right? And nobody actually expects to be swept away the next day!"
+"You look up into the sky wistfully."
+p "Well, there's no point in groaning about it anymore. I should get going, maybe I can find someone around here."
+"You do a quick stretch before heading off."
+"After walking for what seemed to be hours, you come across a modern looking sign pointing towards a point of interest."
+p "Hmm... Xopolis?"
+
+scene city
+with fade
+play music love fadein 1
+
+"Welcome to Xopolis!"
+"A city that looks similar to some found on earth... but something seems off."
+"I wonder what we will find here..."
+p "Wow, this city is amazing. It kind of reminds me of home."
+"As you walked around admiring the city, you start to lose track of your surroundings."
+"You only snap out of it when you hear a car horn blaring and a car heading straight for you."
+play sound car
+q "Look Out!!!"
+"You hear a female voice behind you screaming in fear. Startled form all the noise, you fall backwards as someone grabs your arm and yanks you back towards the sidewalk."
+p "W-Whoa!"
+"You hit the ground with a loud thump, landing on your butt and then tumbling face-first into the concrete."
+p "Ugh..."
+"You hear the female voice above you again."
+q "A-Are you ok?"
+"You start to rub your head in pain, and finally got a look at the girl behind you."
+
+label Choice:
+menu:
+    "The first thing you noticed about her was:"
+    "Her long teal pigtails":
+        "Long teal pigtails. So long they were almost at her knees. Quite unnatural."
+        jump Miku
+    "Her long pink hair":
+        "Long pink hair. So bright pink it was almost unnatural."
+        jump Luka
+label Luka:
+    "You stared at the girl who saved you. She seemed a bit confused at your lack of response but still greeted you with a smile."
+    show luka
+    l "I'm Luka... I'll help you up"
+    "She offered you a hand and you pulled yourself up"
+    show luka sad
+    l "You should look where you're going. That could have ended really badly."
+    p "Yeah, my fault. I was just a bit lost. I'm actually not sure where I am."
+    show luka
+    l "Oh! I can show you around then if you like!"
+menu:
+    "What do you say in response?"
+    "Nah, I'm good":
+        $ heart_points -= 1
+        show luka sad
+        l "Oh.. never mind then"
+        "After seeing her sorrowful expression, you can't help but think you made the wrong choice."
+        p "Actually, I change my mind! I would love your help."
+        l "Really? It's ok if you just want me to leave..."
+        p "Sorry, I made a mistake. I would appreciate your help."
+        show luka
+    "Of course, thank you!":
+        $ heart_points += 1
+        show luka arms blush
+        "She smiled warmly at you"
+l "Ok, I'll take you to one of my favorite stores then. Do you like sweets?"
+p "Sure, I'd say I'm a fan."
+l "Ok letsa go!"
+scene store with fade
+play music world fadein 1
+"Luka led you both to a small store a couple blocks away. The inside was clean and the shelves were lined with packaged desserts."
+show luka arms
+l "This place has great cookies."
+p "Oh really, what flavor?"
+l "Takoyaki flavor."
+p "Takoyaki?! Like, octopus?"
+show luka arms blush
+l "Yeah!"
+l "You need to try them, they are so good!"
+hide luka arms blush
+"Luka ran to the cashier to purchase the cookies. Your stomach was queasy at the thought of savory octopus mixed with a sugary treat didn't sit well in your stomach."
+"You see Luka coming back with armfuls of the takoyaki cookies"
+show luka arms
+l "Sorry, I ended up buying a bunch for myself!"
+show luka arms blush
+l "I can't help it, they are my favorite."
+"She opens one of the packages and hands you a cookie."
+l "Please, try one!"
+menu:
+    "Hesitantly, you decide to:"
+    "Try a cookie":
+        hide luka arms blush
+        $ heart_points += 1
+        p "Sure, why not."
+        "You take a small bite of the cookie, bracing for a barrage of unpleasent flavors."
+        "To your surprise, you finished the whole thing!"
+        p "Wow, this is delicious!"
+        show luka
+        "Luka smiled warmly."
+        l "You see what I mean, they are great! Here, you can have some more!"
+        "Unable to control yourself, you find yourself devouring two, then three of the cookies, nearly inhaling them."
+        show luka arms blush
+        l "Woah, don't forget to breathe!"
+        "She laughed sweetly as the both of you left the store."
+    "Politely decline":
+        $ heart_points -= 1
+        hide luka arms blush
+        p "No thank you, I don't think I'll like these."
+        show luka sad
+        l "You won't know if you don't try...."
+        l "That's ok though. I'll just eat them myself."
+        "The mood turned sour as the both of you left the store"
+scene park
+play music twothree fadein 1
+"As the day draws to a close, you start to wonder what your next steps are."
+"After Luka leaves, you'll have nowhere to go."
+show luka 
+"It was nice meeting you... hm. I never caught your name. My bad."
+p "Oh no problem, it's [name]."
+show luka arms
+l "[name]? I see. It was very nice to meet you [name]"
+show luka sad
+"Luka let down a deep sigh."
+menu:
+    l "I can't believe I went this whole day not asking your name. I feel terrible."
+    "I don't mind!":
+        $ heart_points += 1
+        show luka arms blush
+        l "Hehe... I'm a bit forgetful sometimes."
+    "Yeah that was kinda rude...":
+        $ heart_points -= 1
+        "Luka looks to the ground, avoiding eye contact"
+if heart_points >= 0:
+    jump Good
+if heart_points <= 0:
+    jump Bad
+
+label Good:
+    show luka
+"I think you and Luka are getting along!"
+show luka arms blush
+l "If you don't mind, I would like to get to know you better."
+p "I would as well!"
+"Congrats! You got the good ending!"
+"You and Luka are starting to form a great friendship... or maybe something more?"
+"Who knows though?"
+"Thanks for playing! Try to get another ending!"
+return
+
+label Bad:
+show Luka sad
+"I don't think this is working out. Maybe try again?"
+return
+
+label Miku:
+    "You stared at the girl who saved you. She seemed a bit confused at your lack of response but still greeted you with a smile."
+    show miku
+    m "I'm Miku... I'll help you up"
+    "She offered you a hand and you pulled yourself up"
+    show miku frown
+    m "You should look where you're going. That could have ended really badly."
+    p "Yeah, my fault. I was just a bit lost. I'm actually not sure where I am."
+    show miku
+    m "Oh! I can show you around then if you like!"
+menu:
+    "What do you say in response?"
+    "Nah, I'm good":
+        $ heart_points -= 1
+        show miku frown
+        l "Oh.. never mind then"
+        "After seeing her sorrowful expression, you can't help but think you made the wrong choice."
+        p "Actually, I change my mind! I would love your help."
+        l "Really? It's ok if you just want me to leave..."
+        p "Sorry, I made a mistake. I would appreciate your help."
+        show miku
+    "Of course, thank you!":
+        $ heart_points += 1
+        show miku smile blush
+        "She smiled warmly at you"
+m "Ok, I'll take you to one of my favorite stores then. Do you like sweets?"
+p "Sure, I'd say I'm a fan."
+m "Ok letsa go!"
+scene store with fade
+play music world fadein 1
+"Miku led you both to a small store a couple blocks away. The inside was clean and the shelves were lined with packaged desserts."
+show miku smile
+m "This place has great cookies."
+p "Oh really, what flavor?"
+m "Leek flavor."
+p "Leek?! Like, the vegetable?"
+show miku smile blush
+m "Yeah!"
+m "You need to try them, they are so good!"
+hide miku smile blush
+"Miku ran to the cashier to purchase the cookies. Your stomach was queasy at the thought of vegetables mixed with a sugary treat."
+"You see Miku coming back with armfuls of the leek cookies"
+show miku smile
+m "Sorry, I ended up buying a bunch for myself!"
+show miku smile blush
+m "I can't help it, they are my favorite"
+"She opens one of the packages and hands you a cookie."
+m "Please, try one!"
+menu:
+    "Hesitantly, you decide to:"
+    "Try a cookie":
+        hide miku smile blush
+        $ heart_points += 1
+        p "Sure, why not."
+        "You take a small bite of the cookie, bracing for a barrage of unpleasent flavors."
+        "To your surprise, you finished the whole thing!"
+        p "Wow, this is delicious!"
+        show miku
+        "Miku smiled warmly."
+        m "You see what I mean, they are great! Here, you can have some more!"
+        "Unable to control yourself, you find yourself devouring two, then three of the cookies, nearly inhaling them."
+        show miku smile blush
+        m "Woah, don't forget to breathe!"
+        "She laughed sweetly as the both of you left the store."
+    "Politely decline":
+        $ heart_points -= 1
+        hide miku smile blush
+        p "No thank you, I don't think I'll like these.0"
+        show miku frown
+        m "You won't know if you don't try...."
+        m "That's ok though. I'll just eat them myself."
+        "The mood turned sour as the both of you left the store"
+scene park
+play music twothree fadein 1
+"As the day draws to a close, you start to wonder what your next steps are."
+"After Miku leaves, you'll have nowhere to go."
+show miku 
+"It was nice meeting you... hm. I never caught your name. My bad."
+p "Oh no problem, it's [name]."
+show miku smile
+m "[name]? I see. It was very nice to meet you [name]"
+show miku frown
+menu:
+    m "I can't believe I went this whole day not asking your name. I feel terrible."
+    "I don't mind!":
+        $ heart_points += 1
+        show miku smile blush
+        m "Hehe... I'm a bit forgetful sometimes."
+    "Yeah that was kinda rude...":
+        $ heart_points -= 1
+        "Miku looks to the ground, avoiding eye contact"
+if heart_points >= 0:
+    jump Good1
+if heart_points <= 0:
+    jump Bad1
+
+label Good1:
+    show miku
+"I think you and Miku are getting along!"
+show miku smile blush
+m "If you don't mind, I would like to get to know you better."
+p "I would as well!"
+"Congrats! You got the good ending!"
+"You and Miku are starting to form a great friendship... or maybe something more?"
+"Who knows though?"
+"Thanks for playing! Maybe try to get another ending!"
+return
+
+label Bad1:
+show miku frown
+"I don't think this is working out. Maybe try again?"
+return
