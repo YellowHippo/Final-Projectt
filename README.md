@@ -4,8 +4,8 @@ First, here's the link to my video: https://www.youtube.com/watch?v=IODmUqxD7jo
 
 Some extra things about my project:
 
-I learned a lot about visual novel making! There's a lot of things that go into making a good VN, and I would have loved to include more sprites, sound effects, and scenes
+My biggest challenge was figuring out how to make the player's choices matter.  I didn't want my game to feel super linear. To work around this, I made the heart points variable as explained in my video.  While in this game I only had 2 endings per character, I could have made even more endings by implementing that variable.  That was my original plan but I decided to cut it down so I could finish properly.
 
-I learned a lot of the code from the Ren'Py tutorial, and I played a bunch of free VN's online to gain some inspiration for things like colors, music, and font choice
+The thing i enjoyed the most was honestly the UI design. I spent the most time adjusting font sizes and colors, outlines, text box placement, and other things trying to customize as much of it as I could.  I wanted my project to feel unique to me and my style, and I think I accomplished that well.
 
 All in all, I enjoyed this project a ton and see myself coming back to Ren'py in the future to make a longer VN when I have a good story to tell!
